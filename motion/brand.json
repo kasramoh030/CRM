@@ -6,7 +6,10 @@
     "tagline_fa": "پیجت رو قاب کن",
     "tagline_en": "CINEMATIC CONTENT FOR YOUR PAGE",
     "fps": 30,
-    "size": [1080, 1920],
+    "size": [
+      1080,
+      1920
+    ],
     "colors": {
       "ink": "#0B0B14",
       "ink2": "#161327",
@@ -22,8 +25,25 @@
     }
   },
   "cuts": {
-    "30": ["hook", "services", "results", "portfolio", "cta", "outro"],
-    "15": ["hook", "services", "cta", "outro"]
+    "full": [
+      "hook",
+      "services",
+      "education",
+      "process",
+      "results",
+      "portfolio",
+      "host",
+      "cta",
+      "outro"
+    ],
+    "short": [
+      "hook",
+      "services",
+      "results",
+      "host",
+      "cta",
+      "outro"
+    ]
   },
   "scenes": [
     {
@@ -55,6 +75,11 @@
       "id": "portfolio",
       "caption_en": "See our portfolio, then DM us to start.",
       "vo": "نمونه‌کارها رو ببین و با یه دایرکت شروع کن."
+    },
+    {
+      "id": "host",
+      "caption_en": "I'm the maker behind Framebaz — send your idea, I'll frame it.",
+      "vo": "من پشت فریم‌بازم؛ ایده‌ت رو بفرست، قابش می‌کنم."
     },
     {
       "id": "cta",

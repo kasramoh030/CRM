@@ -10,6 +10,7 @@ Layout contract: all content stays inside the safe box (100,300)-(930,1500);
 the English subtitle pill sits at CAPTION_Y so nothing collides with it.
 """
 import math
+import os
 import random
 
 from PIL import Image, ImageDraw, ImageFilter, ImageChops, ImageFont
@@ -21,6 +22,7 @@ from .textkit import shape, font as F, draw_text, text_size, spaced
 
 W, H = 1080, 1920
 ANCH = (100, 300, 930, 1500)          # safe content box
+ASSETS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets")
 CAPTION_Y = 1372                      # burned-in English subtitle centre
 WATERMARK_Y = 1520
 
@@ -108,6 +110,60 @@ def arrow(d, x0, y0, x1, y1, color, width=14, head=30):
     for s in (-1, 1):
         d.line([x1, y1, x1 - math.cos(a + s * 0.5) * head, y1 - math.sin(a + s * 0.5) * head],
                fill=color, width=width)
+
+
+# --------------------------------------------------------------------------- #
+# mascot assets (hand-drawn illustration uploaded by the client)
+# --------------------------------------------------------------------------- #
+_ASSETS = {}
+
+
+def asset(name, height=None):
+    """Loads assets/<name> (RGBA) scaled to `height`; cached across frames."""
+    key = (name, height)
+    if key not in _ASSETS:
+        img = Image.open(os.path.join(ASSETS, name)).convert("RGBA")
+        if height:
+            img = img.resize((max(1, int(img.width * height / img.height)), int(height)),
+                             Image.LANCZOS)
+        _ASSETS[key] = img
+    return _ASSETS[key]
+
+
+def mascot_card(d, t, sc, B, S, x, y, height=700, delay=0.3, rot=-3.0, side="up"):
+    """Pastes the hand-drawn mascot card with a spring-in + gentle bob."""
+    img = asset("mascot_card.png", height)
+    p = clamp(segment(t, delay, delay + 0.55))
+    if p <= 0:
+        return
+    e = out_back(p)
+    bob = math.sin(t * 1.6) * 6
+    ang = rot * (1 - e)
+    if side == "up":
+        oy = (1 - e) * 140
+        ox = 0.0
+    else:
+        ox = (1 - e) * 200 * (1 if side == "left" else -1)
+        oy = 0.0
+    layer = img.rotate(ang, resample=Image.BICUBIC, expand=True)
+    x = int(x - layer.width / 2 + ox)
+    y = int(y - layer.height / 2 + oy + bob)
+    d._image.paste(layer, (x, y), layer)
+
+
+def mascot_badge(d, t, sc, B, S, cx, cy, size=190, delay=0.2, ring=True, bob_amp=5):
+    """Circular face badge with a pulsing 'speaking' ring."""
+    img = asset("mascot_badge.png", size)
+    p = out_back(clamp(segment(t, delay, delay + 0.5)))
+    if p <= 0:
+        return
+    cy = cy + math.sin(t * 2.1) * bob_amp
+    ln = img.width + int(36 + 26 * (0.5 + 0.5 * math.sin(t * 3.4)))
+    if ring:
+        d.ellipse([cx - ln / 2, cy - ln / 2, cx + ln / 2, cy + ln / 2],
+                  outline=fx.hex2rgb(B["colors"][sc.get("accent", "yellow")]) + (150,), width=6)
+    layer = img.resize((int(img.width * p), int(img.height * p)), Image.LANCZOS)
+    d._image.paste(layer, (int(cx - layer.width / 2), int(cy - layer.height / 2)), layer)
 
 
 # --------------------------------------------------------------------------- #
@@ -304,7 +360,6 @@ def tpl_hook(img, d, t, sc, B, S):
     if ha > 0:
         tracked(d, (W / 2, 1225), B["handle"] + "  •  " + B["tagline_en"], F("lat_heavy", 26),
                 (11, 11, 20, int(190 * ha)), 4.0, anchor="mm")
-    eng_caption(d, B, sc, t)
     return img
 
 
@@ -375,7 +430,7 @@ def tpl_education(img, d, t, sc, B, S):
                        style="stepped", start=0.45, max_w=900)
     s = out_back(clamp(segment(t, 1.05, 1.6)))
     if s > 0:
-        pill(d, W / 2, 1250, "۲۴ فریم در ثانیه", F("fa", 40), (11, 11, 20), C["lime"], tracking=0.5)
+        pill(d, W / 2 - 110, 1250, "۲۴ فریم در ثانیه", F("fa", 40), (11, 11, 20), C["lime"], tracking=0.5)
     eng_caption(d, B, sc, t)
     return img
 
@@ -534,6 +589,7 @@ def tpl_cta(img, d, t, sc, B, S):
 
 def tpl_outro(img, d, t, sc, B, S):
     C = B["colors"]
+    mascot_badge(d, t, sc, B, S, cx=W / 2, cy=415, size=168, delay=0.15)
     s = out_elastic(clamp(segment(t, 0.1, 0.9)))
     cx, cy = W / 2, 600
     size = 200 * clamp(s)
@@ -567,10 +623,26 @@ def tpl_outro(img, d, t, sc, B, S):
     return img
 
 
+def tpl_host(img, d, t, sc, B, S):
+    """Introduces the maker: hand-drawn card + face badge + hero line."""
+    C = B["colors"]
+    kicker(d, B, sc, t, y=336, color=C["muted"])
+    auto_persian_lines(d, B, sc, t, S, y=490, base_size=100, color=C["white"],
+                       start=0.12, gap=0.14, max_w=880)
+    mascot_badge(d, t, sc, B, S, cx=862, cy=716, size=170, delay=0.95)
+    mascot_card(d, t, sc, B, S, x=W / 2 - 8, y=1010, height=620, delay=0.45, rot=-4)
+    a = out_cubic(clamp(segment(t, 1.35, 1.9)))
+    if a > 0:
+        tracked(d, (W / 2, 1392), "IDEA  /  STORYBOARD  /  MOTION", F("lat_heavy", 25),
+                (255, 255, 255, int(205 * a)), 4.0, anchor="mm")
+    eng_caption(d, B, sc, t, y=248)
+    return img
+
+
 TEMPLATES = {
     "hook": tpl_hook, "services": tpl_services, "education": tpl_education,
     "process": tpl_process, "results": tpl_results, "portfolio": tpl_portfolio,
-    "cta": tpl_cta, "outro": tpl_outro,
+    "cta": tpl_cta, "outro": tpl_outro, "host": tpl_host,
 }
 
 

@@ -89,6 +89,14 @@ SCENES = [
         min_dur=3.6, weight=1.0, lead=0.45, tail=0.45,
     ),
     dict(
+        id="host", template="host", bg="ink2", accent="cyan",
+        kicker_en="MEET THE MAKER",
+        fa_lines=["من پشت فریم‌بازم", "ایده‌ت رو بفرست"],
+        caption_en="I'm the maker behind Framebaz — send your idea, I'll frame it.",
+        vo="من پشت فریم‌بازم؛ ایده‌ت رو بفرست، قابش می‌کنم.",
+        min_dur=5.2, weight=1.0, lead=0.5, tail=0.6,
+    ),
+    dict(
         id="cta", template="cta", bg="yellow", accent="magenta",
         kicker_en="FRAMEBAZ",
         fa_lines=["فریم\u200cباز", "پیجت رو قاب کن"],

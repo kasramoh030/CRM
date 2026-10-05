@@ -18,6 +18,7 @@ MOTION_NOTES = {
     "results": "شمارندهٔ بزرگ «+۳۰۰٪» با اعداد فارسی بالا می‌رود، نمودار میله‌ای از پایین رشد می‌کند و سه چیپ آماری وارد می‌شوند.",
     "portfolio": "گرید ۲×۳ نمونه‌کارها با کجی ملایم و حرکت شناور؛ اشارهٔ «PORTFOLIO • @framebaz» و فلش.",
     "cta": "دکمهٔ بزرگ «فریم‌باز» با حلقه‌های ضربان‌دار و هواپیمای کاغذی که با رد دنباله وارد می‌شود؛ آیدی و شعار لاتین.",
+    "host": "کارت دست‌ساز کاراکتر فریم‌باز (مرد با بره و کلاکت) با فنر وارد می‌شود، بج دایره‌ای چهره با حلقهٔ ضربان‌دار کنار تیتر و مسیر «ایده / استوری‌بورد / موشن» در پایین.",
     "outro": "لوگوتایپ تیره با دکمهٔ پلی، نام FRAMEBAZ + تگ‌لاین، سه چیپ FOLLOW/SAVE/SHARE و آیدی پیج.",
 }
 
@@ -50,7 +51,7 @@ def write_md(brand, scenes, tl, css, path):
                     f"| {sc.get('vo','')} | {MOTION_NOTES.get(sc['id'],'')} |")
     doc = f"""# استوری‌بورد موشن‌گرافیک فریم‌باز — Framebaz motion story
 
-نسخه‌ها: **44s** (کامل، ۸ صحنه) و **30s** (کوتاه‌شده، ۶ صحنه) — ۱۰۸۰×۱۹۲۰، ۳۰fps، گویندگی فارسی + زیرنویس انگلیسی سوخته.
+نسخه‌ها: **full** (کامل، ۹ صحنه) و **short** (کوتاه‌شده، ۶ صحنه) — ۱۰۸۰×۱۹۲۰، ۳۰fps، گویندگی فارسی + زیرنویس انگلیسی سوخته.
 
 {GRADE_NOTES}
 
@@ -58,15 +59,15 @@ def write_md(brand, scenes, tl, css, path):
 
 {chr(10).join(rows)}
 
-## نسخه ۳۰ ثانیه‌ای
+## نسخه کوتاه
 
-صحنه‌های `hook → services → results → portfolio → cta → outro` (۲۹.۴ ثانیه).
+صحنه‌های `hook / services / results / host / cta / outro`.
 
 ## فایل‌های مرتبط
 
-* `framebaz_reel_44s_music.mp4` — نسخه نهایی با موسیقی
-* `framebaz_reel_44s_vonoly.mp4` — فقط گویندگی (برای گذاشتن آهنگ ترند)
-* `framebaz_reel_30s_music.mp4` — نسخه کوتاه
+* `framebaz_reel_full_music.mp4` — نسخه کامل با موسیقی
+* `framebaz_reel_full_vonoly.mp4` — فقط گویندگی (برای گذاشتن آهنگ ترند)
+* `framebaz_reel_short_music.mp4` — نسخه کوتاه
 * `cover_frame.png` — کاور
 """
     with open(path, "w", encoding="utf-8") as fh:
@@ -139,7 +140,7 @@ def main():
     with open("out/timeline.json", encoding="utf-8") as fh:
         tl = json.load(fh)
     css = {s["id"]: s for s in scenes}
-    video = "out/framebaz_reel_44s_music.mp4"
+    video = "out/framebaz_reel_full_music.mp4"
     print(write_md(brand, scenes, tl, css, "out/storyboard.md"))
     print(write_html(brand, scenes, tl, css, video, "out/storyboard.html", "out/frames"))
 

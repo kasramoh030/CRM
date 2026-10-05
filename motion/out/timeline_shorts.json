@@ -1,6 +1,6 @@
 {
   "fps": 30,
-  "total": 29.433333333333334,
+  "total": 31.03333333333333,
   "scenes": [
     {
       "id": "hook",
@@ -30,30 +30,30 @@
       "frames": 219
     },
     {
-      "id": "portfolio",
+      "id": "host",
       "start": 17.6,
-      "dur": 3.6,
-      "vo_dur": 2.6354648526077096,
-      "lead": 0.45,
-      "vo_start": 18.05,
-      "frames": 108
+      "dur": 5.2,
+      "vo_dur": 3.3668934240362813,
+      "lead": 0.5,
+      "vo_start": 18.1,
+      "frames": 156
     },
     {
       "id": "cta",
-      "start": 21.200000000000003,
+      "start": 22.8,
       "dur": 3.4,
       "vo_dur": 2.2987755102040817,
       "lead": 0.5,
-      "vo_start": 21.700000000000003,
+      "vo_start": 23.3,
       "frames": 102
     },
     {
       "id": "outro",
-      "start": 24.6,
+      "start": 26.2,
       "dur": 4.833333333333333,
       "vo_dur": 3.7035827664399092,
       "lead": 0.5,
-      "vo_start": 25.1,
+      "vo_start": 26.7,
       "frames": 145
     }
   ]

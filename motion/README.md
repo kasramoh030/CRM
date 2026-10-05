@@ -18,10 +18,10 @@ code in [`framebaz/templates.py`](framebaz/templates.py).
 
 | file | what it is |
 |---|---|
-| `framebaz_reel_44s_music.mp4` | **main video** — narration + subtle rhythmic music bed (43.9 s) |
-| `framebaz_reel_44s_vonoly.mp4` | same picture, **voice‑over only** — drop a trending track on it in the Instagram editor (still gets a boost from original audio) |
-| `framebaz_reel_30s_music.mp4` | cut‑down version (29.4 s) for ads / shorter attention |
-| `cover_frame.png` | still extracted from the video, usable as the Reel cover |
+| `framebaz_reel_full_music.mp4` | **main video** — 9 scenes, narration + subtle rhythmic music bed (~49 s) |
+| `framebaz_reel_full_vonoly.mp4` | same picture, **voice‑over only** — drop a trending track on it in the Instagram editor |
+| `framebaz_reel_short_music.mp4` | cut‑down version (~31 s) for ads / shorter attention |
+| `cover_frame.png` / `cover.png` | still from the video / designed cover, usable as the Reel cover |
 | `storyboard.md` | scene‑by‑scene script: timings, Persian on‑screen text, English subtitle, narration, motion notes |
 | `timeline.json` / `timeline_30s.json` | machine‑readable timing (used by the renderer) |
 | `audio.m4a`, `audio_clean.m4a`, `audio_30s.m4a` | audio mixes |
@@ -31,13 +31,18 @@ code in [`framebaz/templates.py`](framebaz/templates.py).
 ```
 motion/
 ├── brand.json              ← EDIT ME: copy, colours, handle, cut definitions
+├── assets/                 ← mascot artwork (mascot_source.png → transparent PNGs)
+│   ├── mascot_card.png     hand-drawn card with paper edge + shadow (used in the "host" scene)
+│   ├── mascot_badge.png    circular face badge (used in "host" + "outro")
+│   └── mascot_head.png     head crop
 ├── audio/vo_0*.mp3         ← EDIT ME: Persian narration, one file per scene, in order
 ├── framebaz/
 │   ├── brand.py            brand + scene deck (Persian on‑screen lines & English subs)
 │   ├── textkit.py          Persian reshaping/bidi + typography (Pillow)
 │   ├── easings.py          easing curves (out‑back, elastic, expo, stepped/stop‑motion …)
 │   ├── fx.py               gradients, grain, vignette, glow, whip‑pan smear, halftone, chromatic aberration
-│   ├── templates.py        the 8 scene templates (hook, services, education, process, results, portfolio, cta, outro)
+│   ├── templates.py        the 9 scene templates (hook, services, education, process, results,
+│   │                       portfolio, host, cta, outro) + mascot card/badge helpers
 │   ├── audio.py            decodes the voice‑overs, lays them out scene‑by‑scene, adds the music bed, writes timeline.json
 │   └── render.py           draws every frame → pipes raw RGB into ffmpeg; transitions + grade; mux helpers
 └── tools/make_all.sh       one command that rebuilds everything
@@ -46,6 +51,23 @@ motion/
 Rendering: 1317 frames of 1080×1920 in ~2.5 min (~10 fps) on a 2‑core box, single process,
 no GPU — pure Pillow + numpy + ffmpeg. Video is rendered **silent** once, then muxed with
 several audio mixes (stream copy), so adding an audio variant costs seconds.
+
+### The drawn character (mascot)
+
+The client illustration lives in `assets/mascot_source.png`. `tools/make_mascot.py`
+removes the paper background (border flood-fill, keeps enclosed artwork solid) and
+produces `mascot.png` (character + crayon backdrop), `mascot_card.png` (the sticker
+card used in the video), `mascot_badge.png` and `mascot_head.png`:
+
+```bash
+python3 tools/make_mascot.py                       # uses assets/mascot_source.png
+python3 tools/make_mascot.py path/to/new_art.png    # swap in new artwork
+```
+
+> Note: the crayon backdrop shares its hue with the skin tones, so a fully automated
+> "character only" cut-out is not reliable — the card treatment (character + his own
+> crayon backdrop inside a paper-edged card) is both artifact-free and on-brand.
+> `make_mascot.py` still writes `assets/mascot_char.png` as a best-effort cut-out.
 
 ### Requirements (already provisioned by `tools/bootstrap.sh` in this sandbox)
 
