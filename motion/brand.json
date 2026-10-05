@@ -1,0 +1,70 @@
+{
+  "brand": {
+    "name_fa": "فریم‌باز",
+    "name_en": "FRAMEBAZ",
+    "handle": "@framebaz",
+    "tagline_fa": "پیجت رو قاب کن",
+    "tagline_en": "CINEMATIC CONTENT FOR YOUR PAGE",
+    "fps": 30,
+    "size": [1080, 1920],
+    "colors": {
+      "ink": "#0B0B14",
+      "ink2": "#161327",
+      "magenta": "#FF2D6F",
+      "pink": "#FF7FB0",
+      "yellow": "#FFE24B",
+      "lime": "#C6FF3D",
+      "cyan": "#3EE0FF",
+      "blue": "#1B2A6B",
+      "purple": "#3A1D6E",
+      "white": "#FFFFFF",
+      "muted": "#9C9CB4"
+    }
+  },
+  "cuts": {
+    "30": ["hook", "services", "results", "portfolio", "cta", "outro"],
+    "15": ["hook", "services", "cta", "outro"]
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "caption_en": "Photos not growing your page? Try video.",
+      "vo": "اگه پیجت با عکس دیده نمی‌شه، وقتشه ویدیو رو امتحان کنی."
+    },
+    {
+      "id": "services",
+      "caption_en": "Motion graphics, motion stories and pro reels for your page.",
+      "vo": "فریم‌باز موشن‌گرافیک، موشن استوری و ریلز حرفه‌ای برای پیجت می‌سازه."
+    },
+    {
+      "id": "education",
+      "caption_en": "Animated tutorials and stop-motion — idea to delivery.",
+      "vo": "از آموزش انیمیشنی و استاپ‌موشن تا تیزر تبلیغاتی؛ ایده تا اجرا، همه‌چیز دست ما."
+    },
+    {
+      "id": "process",
+      "caption_en": "Idea, storyboard, animation, delivery — step by step.",
+      "vo": "فرایندش ساده‌ست: ایده، استوری‌بورد، انیمیشن و تحویل؛ مرحله‌به‌مرحله با خودت هماهنگیم."
+    },
+    {
+      "id": "results",
+      "caption_en": "More views, higher retention, real sales.",
+      "vo": "بازدید بیشتر، موندگاری بالاتر، فروش واقعی؛ فرقش رو توی تعامل می‌بینی."
+    },
+    {
+      "id": "portfolio",
+      "caption_en": "See our portfolio, then DM us to start.",
+      "vo": "نمونه‌کارها رو ببین و با یه دایرکت شروع کن."
+    },
+    {
+      "id": "cta",
+      "caption_en": "Framebaz — frame your page.",
+      "vo": "فریم‌باز؛ پیجت رو قاب کن."
+    },
+    {
+      "id": "outro",
+      "caption_en": "DM us to start • Follow for more.",
+      "vo": "برای شروع، دایرکت بده و ما رو دنبال کن."
+    }
+  ]
+}

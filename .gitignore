@@ -1,0 +1,7 @@
+# rendered media (large; regenerate with motion/tools/make_all.sh)
+motion/out/*.mp4
+motion/out/_*.mp4
+motion/out/frames/
+motion/build/
+__pycache__/
+*.pyc
