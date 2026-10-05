@@ -177,6 +177,7 @@ if __name__ == "__main__":
         with open("brand.json", encoding="utf-8") as fh:
             cuts = json.load(fh).get("cuts", {})
         only = ",".join(cuts[a.cut])
-        name = a.audio_name or f"audio_{a.cut}s.m4a"
-        tl_name = f"timeline_{a.cut}s.json"
+        suffix = f"{a.cut}s" if a.cut.isdigit() else a.cut
+        name = a.audio_name or f"audio_{suffix}.m4a"
+        tl_name = f"timeline_{suffix}.json"
     build(a.vo_dir, a.out, bed=not a.no_bed, only=only, audio_name=name, timeline_name=tl_name)

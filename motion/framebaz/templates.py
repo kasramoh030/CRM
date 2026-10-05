@@ -134,7 +134,7 @@ def mascot_card(d, t, sc, B, S, x, y, height=700, delay=0.3, rot=-3.0, side="up"
     """Pastes the hand-drawn mascot card with a spring-in + gentle bob."""
     img = asset("mascot_card.png", height)
     p = clamp(segment(t, delay, delay + 0.55))
-    if p <= 0:
+    if p <= 0.01:
         return
     e = out_back(p)
     bob = math.sin(t * 1.6) * 6
@@ -155,14 +155,14 @@ def mascot_badge(d, t, sc, B, S, cx, cy, size=190, delay=0.2, ring=True, bob_amp
     """Circular face badge with a pulsing 'speaking' ring."""
     img = asset("mascot_badge.png", size)
     p = out_back(clamp(segment(t, delay, delay + 0.5)))
-    if p <= 0:
+    if p <= 0.01:
         return
     cy = cy + math.sin(t * 2.1) * bob_amp
     ln = img.width + int(36 + 26 * (0.5 + 0.5 * math.sin(t * 3.4)))
     if ring:
         d.ellipse([cx - ln / 2, cy - ln / 2, cx + ln / 2, cy + ln / 2],
                   outline=fx.hex2rgb(B["colors"][sc.get("accent", "yellow")]) + (150,), width=6)
-    layer = img.resize((int(img.width * p), int(img.height * p)), Image.LANCZOS)
+    layer = img.resize((max(1, int(img.width * p)), max(1, int(img.height * p))), Image.LANCZOS)
     d._image.paste(layer, (int(cx - layer.width / 2), int(cy - layer.height / 2)), layer)
 
 
