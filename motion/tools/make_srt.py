@@ -37,10 +37,10 @@ def write_srt(tl, scenes, key, out, lead=0.55, tail=0.35):
 
 def main():
     brand, scenes = BR.load()
-    with open("out/timeline.json", encoding="utf-8") as fh:
+    with open("deliverables/timeline.json", encoding="utf-8") as fh:
         tl = json.load(fh)
-    write_srt(tl, scenes, "vo", "out/subtitles_fa.srt")
-    write_srt(tl, scenes, "caption_en", "out/subtitles_en.srt")
+    write_srt(tl, scenes, "vo", "deliverables/subtitles_fa.srt")
+    write_srt(tl, scenes, "caption_en", "deliverables/subtitles_en.srt")
 
 
 if __name__ == "__main__":

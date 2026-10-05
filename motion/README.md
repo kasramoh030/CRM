@@ -73,24 +73,24 @@ python3 tools/make_mascot.py path/to/new_art.png    # swap in new artwork
 
 ```bash
 # ffmpeg (no apt/network for Debian repos → pip wheel with a static ffmpeg binary)
-python3 -m pip install --target ~/.local/share/framebaz/pylibs imageio-ffmpeg
+python3 -m pip install --target /opt/framebaz-tools/pylibs imageio-ffmpeg
 # python libs
-python3 -m pip install --target ~/.local/share/framebaz/pylibs pillow numpy arabic-reshaper python-bidi fonttools brotli
+python3 -m pip install --target /opt/framebaz-tools/pylibs pillow numpy arabic-reshaper python-bidi fonttools brotli
 # Persian font Vazirmatn + Latin display fonts (Anton, Archivo Black) — npm registry has them
 npm pack vazirmatn @fontsource/anton @fontsource/archivo-black
 ```
 
-Fonts live in `~/.local/share/framebaz/fonts/` and are resolved by
+Fonts live in `/opt/framebaz-tools/fonts/` and are resolved by
 `framebaz/textkit.py` (`FRAMEBAZ_TOOLS` env var overrides the folder).
 
 ### Rebuild
 
 ```bash
-export PYTHONPATH=~/.local/share/framebaz/pylibs:$(pwd)
+export PYTHONPATH=/opt/framebaz-tools/pylibs:$(pwd)
 bash tools/make_all.sh                 # audio → master render → 30s render → mux → poster
 # or one step at a time:
-python3 -m framebaz.audio  --out out
-python3 -m framebaz.render --out out/master.mp4 --timeline out/timeline.json --audio "" --crf 20
+python3 -m framebaz.audio  --out deliverables
+python3 -m framebaz.render --out out/master.mp4 --timeline deliverables/timeline.json --audio "" --crf 20
 ```
 
 ## How to customise

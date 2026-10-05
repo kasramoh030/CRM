@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Generates the storyboard documents (out/storyboard.md + out/storyboard.html)
-straight from brand.json + out/timeline*.json + the rendered video, so the docs
+"""Generates the storyboard documents (deliverables/storyboard.md + deliverables/storyboard.html)
+straight from brand.json + deliverables/timeline*.json + the rendered video, so the docs
 can never drift away from the actual video."""
 import base64
 import json
 import os
 import subprocess
 
-TOOLS = os.environ.get("FRAMEBAZ_TOOLS", "/home/user/.local/share/framebaz")
+TOOLS = os.environ.get("FRAMEBAZ_TOOLS", "/opt/framebaz-tools")
 FFMPEG = os.path.join(TOOLS, "bin", "ffmpeg")
 
 MOTION_NOTES = {
@@ -137,12 +137,12 @@ def main():
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from framebaz import brand as BR
     brand, scenes = BR.load()
-    with open("out/timeline.json", encoding="utf-8") as fh:
+    with open("deliverables/timeline.json", encoding="utf-8") as fh:
         tl = json.load(fh)
     css = {s["id"]: s for s in scenes}
-    video = "out/framebaz_reel_full_music.mp4"
-    print(write_md(brand, scenes, tl, css, "out/storyboard.md"))
-    print(write_html(brand, scenes, tl, css, video, "out/storyboard.html", "out/frames"))
+    video = "deliverables/framebaz_reel_full_music.mp4"
+    print(write_md(brand, scenes, tl, css, "deliverables/storyboard.md"))
+    print(write_html(brand, scenes, tl, css, video, "deliverables/storyboard.html", "deliverables/frames"))
 
 
 if __name__ == "__main__":

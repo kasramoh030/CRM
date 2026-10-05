@@ -1,12 +1,14 @@
-# rendered intermediates (regenerate with motion/tools/make_all.sh)
-motion/out/_*.mp4
-motion/out/frames/
-motion/out/_mix.wav
-motion/build/
+# --- render toolchain / scratch (regenerate with motion/tools/bootstrap.sh + make_all.sh)
+motion/work/
+# media is regenerable, BUT the three final videos are tracked on purpose so the
+# client can always download them straight from GitHub:
+#   https://github.com/kasramoh030/CRM/raw/arena/01a10a87-crm/motion/deliverables/framebaz_reel_full_music.mp4
+motion/deliverables/_*
+motion/deliverables/*.mp4
+!motion/deliverables/framebaz_reel_full_music.mp4
+!motion/deliverables/framebaz_reel_full_vonoly.mp4
+!motion/deliverables/framebaz_reel_short_music.mp4
+motion/deliverables/*.m4a
+motion/deliverables/*.zip
 __pycache__/
 *.pyc
-
-# NOTE: the three *final* deliverables in motion/out/ are intentionally tracked so
-# they can be downloaded straight from GitHub (see motion/دانلود.md):
-#   framebaz_reel_full_music.mp4 / full_vonoly.mp4 / short_music.mp4
-# Remove the lines below and `git rm --cached` them if you'd rather keep the repo light.

@@ -8,7 +8,7 @@ import arabic_reshaper
 from bidi.algorithm import get_display
 from PIL import ImageFont, ImageDraw
 
-TOOLS = os.environ.get("FRAMEBAZ_TOOLS", "/home/user/.local/share/framebaz")
+TOOLS = os.environ.get("FRAMEBAZ_TOOLS", "/opt/framebaz-tools")
 FONT_DIR = os.path.join(TOOLS, "fonts")
 
 FA_RE = re.compile(r"[\u0600-\u06FF]")

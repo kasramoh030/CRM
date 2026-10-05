@@ -11,7 +11,7 @@ from framebaz.textkit import font as F, draw_text
 from framebaz.templates import tracked, play_triangle, ANCH, W, H
 
 
-def main(out="out/cover.png", brand_json=None):
+def main(out="deliverables/cover.png", brand_json=None):
     brand, scenes = BR.load(brand_json)
     C = brand["colors"]
     img = fx.linear_gradient(W, H, C["magenta"], "#C1125A", angle=115).copy()

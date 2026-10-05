@@ -2,7 +2,7 @@
 """Video renderer: draws every frame and pipes raw RGB into ffmpeg.
 
 Features
-  * per-scene timing driven by out/timeline.json (narration aware)
+  * per-scene timing driven by deliverables/timeline.json (narration aware)
   * whip-pan transitions with motion smear
   * zoom punch-in at every scene entry
   * film grain + vignette + subtle chromatic aberration
@@ -25,7 +25,7 @@ from .easings import clamp, smooth, out_cubic
 
 DEFAULT_STYLE = dict(grain=0.012, grain_block=2, chroma=2.0, maxrate="6M", bufsize="12M")
 
-TOOLS = os.environ.get("FRAMEBAZ_TOOLS", "/home/user/.local/share/framebaz")
+TOOLS = os.environ.get("FRAMEBAZ_TOOLS", "/opt/framebaz-tools")
 FFMPEG = os.path.join(TOOLS, "bin", "ffmpeg")
 W, H = 1080, 1920
 
@@ -65,7 +65,7 @@ def poster(video, out, t=1.2):
 
 
 def render_frames(tl, out_path, brand_json=None, style=None, limit=None, sheet=None,
-                  progress_every=30, only=None, audio="out/audio.m4a", crf="20"):
+                  progress_every=30, only=None, audio="deliverables/audio.m4a", crf="20"):
     brand, scenes = BR.load(brand_json)
     if only:
         keep = [s.strip() for s in only.split(",") if s.strip()]
@@ -161,12 +161,12 @@ def render_frames(tl, out_path, brand_json=None, style=None, limit=None, sheet=N
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="out/framebaz_reel_30s.mp4")
-    ap.add_argument("--timeline", default="out/timeline.json")
+    ap.add_argument("--out", default="deliverables/framebaz_reel_full.mp4")
+    ap.add_argument("--timeline", default="deliverables/timeline.json")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--sheet", default="")
     ap.add_argument("--only", default="")
-    ap.add_argument("--audio", default="out/audio.m4a")   # empty string => video only
+    ap.add_argument("--audio", default="deliverables/audio.m4a")   # empty string => video only
     ap.add_argument("--crf", default="22")
     a = ap.parse_args()
     with open(a.timeline, encoding="utf-8") as fh:

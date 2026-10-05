@@ -4,7 +4,7 @@
 * decodes each Persian voice-over clip (no ffprobe needed — we decode to raw PCM),
 * lays the narration out scene by scene with lead-in / tail gaps,
 * adds an optional subtle rhythmic music bed,
-* writes out/audio.m4a + out/timeline.json (scene start/duration/frames).
+* writes deliverables/audio.m4a + deliverables/timeline.json (scene start/duration/frames).
 """
 import json
 import math
@@ -16,7 +16,7 @@ import numpy as np
 
 from . import brand as BR
 
-TOOLS = os.environ.get("FRAMEBAZ_TOOLS", "/home/user/.local/share/framebaz")
+TOOLS = os.environ.get("FRAMEBAZ_TOOLS", "/opt/framebaz-tools")
 FFMPEG = os.path.join(TOOLS, "bin", "ffmpeg")
 SR = 44100
 
@@ -91,7 +91,7 @@ def normalize(x, peak=0.89):
     return (x * (peak / m)).astype(np.float32)
 
 
-def build(vo_dir="audio", out_dir="out", bed=True, fps=None, brand_json=None,
+def build(vo_dir="audio", out_dir="deliverables", bed=True, fps=None, brand_json=None,
           lead_default=0.5, tail_default=0.5, only=None,
           audio_name="audio.m4a", timeline_name="timeline.json"):
     os.makedirs(out_dir, exist_ok=True)
@@ -165,7 +165,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-bed", action="store_true")
     ap.add_argument("--vo-dir", default="audio")
-    ap.add_argument("--out", default="out")
+    ap.add_argument("--out", default="deliverables")
     ap.add_argument("--only", default="")
     ap.add_argument("--cut", default="")
     ap.add_argument("--audio-name", default="")
