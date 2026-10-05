@@ -1,7 +1,12 @@
-# rendered media (large; regenerate with motion/tools/make_all.sh)
-motion/out/*.mp4
+# rendered intermediates (regenerate with motion/tools/make_all.sh)
 motion/out/_*.mp4
 motion/out/frames/
+motion/out/_mix.wav
 motion/build/
 __pycache__/
 *.pyc
+
+# NOTE: the three *final* deliverables in motion/out/ are intentionally tracked so
+# they can be downloaded straight from GitHub (see motion/دانلود.md):
+#   framebaz_reel_full_music.mp4 / full_vonoly.mp4 / short_music.mp4
+# Remove the lines below and `git rm --cached` them if you'd rather keep the repo light.
