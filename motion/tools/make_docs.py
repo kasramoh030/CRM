@@ -40,10 +40,10 @@ def tc(sec):
     return f"{int(sec // 60):01d}:{sec % 60:04.1f}"
 
 
-def write_md(brand, tl, css, path):
+def write_md(brand, scenes, tl, css, path):
     rows = ["| # | صحنه | زمان | طول | تیتر فارسی (روی تصویر) | زیرنویس انگلیسی | گویندگی فارسی | حرکت |",
             "|---|---|---|---|---|---|---|---|"]
-    for i, (sc, info) in enumerate(zip(brand["scenes"], tl["scenes"]), 1):
+    for i, (sc, info) in enumerate(zip(scenes, tl["scenes"]), 1):
         hero = " / ".join(css.get(sc["id"], {}).get("fa_lines", [])) or "—"
         rows.append(f"| {i} | {sc['id']} | {tc(info['start'])}–{tc(info['start']+info['dur'])} "
                     f"| {info['dur']:.1f}s | {hero} | {sc.get('caption_en','')} "
@@ -74,9 +74,9 @@ def write_md(brand, tl, css, path):
     return path
 
 
-def write_html(brand, tl, css, video, path, frames_dir):
+def write_html(brand, scenes, tl, css, video, path, frames_dir):
     cards = []
-    for i, (sc, info) in enumerate(zip(brand["scenes"], tl["scenes"]), 1):
+    for i, (sc, info) in enumerate(zip(scenes, tl["scenes"]), 1):
         t = info["start"] + min(1.6, info["dur"] * 0.55)
         img = frame(video, t, os.path.join(frames_dir, f"{i:02d}_{sc['id']}.png"))
         hero = " / ".join(css.get(sc["id"], {}).get("fa_lines", []))
@@ -140,8 +140,8 @@ def main():
         tl = json.load(fh)
     css = {s["id"]: s for s in scenes}
     video = "out/framebaz_reel_44s_music.mp4"
-    print(write_md(brand, tl, css, "out/storyboard.md"))
-    print(write_html(brand, tl, css, video, "out/storyboard.html", "out/frames"))
+    print(write_md(brand, scenes, tl, css, "out/storyboard.md"))
+    print(write_html(brand, scenes, tl, css, video, "out/storyboard.html", "out/frames"))
 
 
 if __name__ == "__main__":

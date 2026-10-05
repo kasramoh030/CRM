@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>استوری‌بورد فریم‌باز — Framebaz storyboard</title>
+<style>
+ :root { --ink:#0B0B14; --mag:#FF2D6F; --yel:#FFE24B; --lim:#C6FF3D; }
+ * { box-sizing:border-box }
+ body { margin:0; background:var(--ink); color:#fff; font-family:"Vazirmatn",Tahoma,system-ui,sans-serif }
+ header { padding:48px 32px 24px; background:linear-gradient(120deg,var(--mag),#C1125A) }
+ header h1 { margin:0 0 8px; font-size:34px }
+ header p { margin:4px 0; opacity:.9; font-size:16px }
+ .pill { display:inline-block; background:var(--yel); color:#111; border-radius:999px; padding:6px 14px; font-size:13px; font-weight:700; margin-inline-end:8px }
+ .wrap { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:22px; padding:28px 24px 64px }
+ .scene { background:#14121f; border:1px solid #262338; border-radius:22px; overflow:hidden }
+ .scene img { width:100%; display:block }
+ .meta { padding:16px 18px 20px; text-align:right }
+ .row { display:flex; align-items:center; gap:10px; flex-wrap:wrap }
+ .num { background:var(--mag); width:30px; height:30px; border-radius:9px; display:grid; place-items:center; font-weight:800 }
+ h3 { margin:0; font-size:18px; letter-spacing:.14em; color:#cfcbe4 }
+ .time { margin-inline-start:auto; font-size:13px; color:#8f8aa8; direction:ltr }
+ .hero { font-weight:800; font-size:20px; margin:12px 0 4px; color:#fff }
+ .sub { margin:4px 0; font-size:13px; color:var(--lim); direction:ltr; text-align:left }
+ .vo { margin:8px 0; font-size:14px; color:#ffd9e6 }
+ .note { margin:8px 0 0; font-size:13px; color:#a49fbe; line-height:1.9 }
+ footer { padding:0 32px 48px; color:#8f8aa8; font-size:13px }
+</style></head><body>
+<header>
+  <h1>استوری‌بورد موشن‌گرافیک — FRAMEBAZ</h1>
+  <p><span class="pill">1080×1920</span><span class="pill">30fps</span><span class="pill">۸ صحنه / ۴۳.۹ ثانیه</span></p>
+  <p>ترنزیشن whip-pan با smear و اعوجاج رنگی بین صحنه‌ها، دانهٔ فیلم (grain)، وینیت، نوار پیشرفت استوری (۸ بخش) و واترمارک FRAMEBAZ در همهٔ صحنه‌ها.</p>
+</header>
+<div class="wrap">
+    <article class="scene">
+      <img src="frames/01_hook.png" alt="hook">
+      <div class="meta">
+        <div class="row"><span class="num">1</span><h3>HOOK</h3>
+          <span class="time">0:00.0 → 0:05.1 · 5.1s</span></div>
+        <p class="hero">با ویدیو / دیده شو</p>
+        <p class="sub">EN SUB — Photos not growing your page? Try video.</p>
+        <p class="vo">🎙 اگه پیجت با عکس دیده نمی‌شه، وقتشه ویدیو رو امتحان کنی.</p>
+        <p class="note">کلمهٔ «VIDEO» بزرگ پشت صحنه + دکمهٔ پلی با انیمیشن الاستیک و حلقهٔ زرد ضربان‌دار؛ تیتر فارسی با فرود پاپ (out-back) وارد می‌شود. punch-in دوربین در ابتدای صحنه.</p>
+      </div>
+    </article>
+    <article class="scene">
+      <img src="frames/02_services.png" alt="services">
+      <div class="meta">
+        <div class="row"><span class="num">2</span><h3>SERVICES</h3>
+          <span class="time">0:05.1 → 0:10.3 · 5.2s</span></div>
+        <p class="hero">موشن گرافیک / موشن استوری / ریلز</p>
+        <p class="sub">EN SUB — Motion graphics, motion stories and pro reels for your page.</p>
+        <p class="vo">🎙 فریم‌باز موشن‌گرافیک، موشن استوری و ریلز حرفه‌ای برای پیجت می‌سازه.</p>
+        <p class="note">سه کارت خدمات نوبتی از راست سُر می‌خورند و شمارهٔ لاتین + برچسب فارسی + برچسب لاتین را نشان می‌دهند.</p>
+      </div>
+    </article>
+    <article class="scene">
+      <img src="frames/03_education.png" alt="education">
+      <div class="meta">
+        <div class="row"><span class="num">3</span><h3>EDUCATION</h3>
+          <span class="time">0:10.3 → 0:17.2 · 6.9s</span></div>
+        <p class="hero">آموزش انیمیشنی / استاپ موشن</p>
+        <p class="sub">EN SUB — Animated tutorials and stop-motion — idea to delivery.</p>
+        <p class="vo">🎙 از آموزش انیمیشنی و استاپ‌موشن تا تیزر تبلیغاتی؛ ایده تا اجرا، همه‌چیز دست ما.</p>
+        <p class="note">نوار فیلم متحرک در بالا + پنل استاپ‌موشن با انیمیشن ۴ فریمی (۸ فریم در ثانیه) و نوار پیشرفت؛ تیتر فارسی با حس پله‌ای/قطع وارد می‌شود.</p>
+      </div>
+    </article>
+    <article class="scene">
+      <img src="frames/04_process.png" alt="process">
+      <div class="meta">
+        <div class="row"><span class="num">4</span><h3>PROCESS</h3>
+          <span class="time">0:17.2 → 0:24.8 · 7.5s</span></div>
+        <p class="hero">ایده / استوری‌بورد / انیمیشن / تحویل</p>
+        <p class="sub">EN SUB — Idea, storyboard, animation, delivery — step by step.</p>
+        <p class="vo">🎙 فرایندش ساده‌ست: ایده، استوری‌بورد، انیمیشن و تحویل؛ مرحله‌به‌مرحله با خودت هماهنگیم.</p>
+        <p class="note">ریل عمودی مرحله‌به‌مرحله کشیده می‌شود، دایره‌های شماره‌دار روشن می‌شوند و یک جرقهٔ زرد روی ریل حرکت می‌کند.</p>
+      </div>
+    </article>
+    <article class="scene">
+      <img src="frames/05_results.png" alt="results">
+      <div class="meta">
+        <div class="row"><span class="num">5</span><h3>RESULTS</h3>
+          <span class="time">0:24.8 → 0:32.1 · 7.3s</span></div>
+        <p class="hero">نتیجه‌اش رو می‌بینی</p>
+        <p class="sub">EN SUB — More views, higher retention, real sales.</p>
+        <p class="vo">🎙 بازدید بیشتر، موندگاری بالاتر، فروش واقعی؛ فرقش رو توی تعامل می‌بینی.</p>
+        <p class="note">شمارندهٔ بزرگ «+۳۰۰٪» با اعداد فارسی بالا می‌رود، نمودار میله‌ای از پایین رشد می‌کند و سه چیپ آماری وارد می‌شوند.</p>
+      </div>
+    </article>
+    <article class="scene">
+      <img src="frames/06_portfolio.png" alt="portfolio">
+      <div class="meta">
+        <div class="row"><span class="num">6</span><h3>PORTFOLIO</h3>
+          <span class="time">0:32.1 → 0:35.7 · 3.6s</span></div>
+        <p class="hero">نمونه‌کارها</p>
+        <p class="sub">EN SUB — See our portfolio, then DM us to start.</p>
+        <p class="vo">🎙 نمونه‌کارها رو ببین و با یه دایرکت شروع کن.</p>
+        <p class="note">گرید ۲×۳ نمونه‌کارها با کجی ملایم و حرکت شناور؛ اشارهٔ «PORTFOLIO • @framebaz» و فلش.</p>
+      </div>
+    </article>
+    <article class="scene">
+      <img src="frames/07_cta.png" alt="cta">
+      <div class="meta">
+        <div class="row"><span class="num">7</span><h3>CTA</h3>
+          <span class="time">0:35.7 → 0:39.1 · 3.4s</span></div>
+        <p class="hero">فریم‌باز / پیجت رو قاب کن</p>
+        <p class="sub">EN SUB — Framebaz — frame your page.</p>
+        <p class="vo">🎙 فریم‌باز؛ پیجت رو قاب کن.</p>
+        <p class="note">دکمهٔ بزرگ «فریم‌باز» با حلقه‌های ضربان‌دار و هواپیمای کاغذی که با رد دنباله وارد می‌شود؛ آیدی و شعار لاتین.</p>
+      </div>
+    </article>
+    <article class="scene">
+      <img src="frames/08_outro.png" alt="outro">
+      <div class="meta">
+        <div class="row"><span class="num">8</span><h3>OUTRO</h3>
+          <span class="time">0:39.1 → 0:43.9 · 4.8s</span></div>
+        <p class="hero">دایرکت بده</p>
+        <p class="sub">EN SUB — DM us to start • Follow for more.</p>
+        <p class="vo">🎙 برای شروع، دایرکت بده و ما رو دنبال کن.</p>
+        <p class="note">لوگوتایپ تیره با دکمهٔ پلی، نام FRAMEBAZ + تگ‌لاین، سه چیپ FOLLOW/SAVE/SHARE و آیدی پیج.</p>
+      </div>
+    </article></div>
+<footer>گویندگی فارسی + زیرنویس انگلیسی سوخته · نسخه‌ها: 44s (کامل) و 30s (کوتاه) · @framebaz</footer>
+</body></html>
